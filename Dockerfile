@@ -9,12 +9,12 @@ RUN apt-get update \
     && pip3 install paramiko \
     && rm -rf /var/lib/apt/lists/*
 
-# Set permissions and Mount /home/odoo/backups for auto_backup backups
+# Set 1000 for the odoo user 
 RUN usermod -u 1000 odoo \
-    && groupmod -g 1000 odoo #\
-    #&& mkdir -p /odoo/backups /home/odoo/free_themes \
-    #&& chown -R odoo /odoo/backups /home/odoo/free_themes /mnt/extra-addons
-#VOLUME ["/odoo/backups", "/home/odoo/free_themes"]
+    && groupmod -g 1000 odoo 
 
-# Switch to odoo user
+# Add volumes for backups and free_themes
+VOLUME ["/odoo/backups", "/home/odoo/free_themes"]
+
+# Switch back to odoo user
 USER odoo 
