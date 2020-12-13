@@ -14,7 +14,7 @@ RUN usermod -u 1000 odoo \
     && groupmod -g 1000 odoo 
 
 # Add volumes for backups and free_themes
-VOLUME ["/odoo/backups", "/home/odoo/free_themes"]
+VOLUME ["/odoo/backups", "/home/odoo/free_themes", "/var/lib/odoo"]
 
 # Switch back to odoo user
 USER odoo 
