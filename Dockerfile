@@ -1,6 +1,6 @@
 FROM odoo:14.0
 
-# Switch to root
+# Switch to root user
 USER root 
 
 # Instal pip libraries and other tools
@@ -10,9 +10,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Set permissions and Mount /home/odoo/backups for auto_backup backups
-RUN mkdir -p /home/odoo/backups \
-    && chown -R odoo /home/odoo/backups
-VOLUME ["/home/odoo/backups"]
+RUN usermod -u 1000 odoo \
+    && groupmod -g 1000 odoo \
+    && mkdir -p /odoo/backups /home/odoo/free_themes \
+    && chown -R odoo:odoo /odoo/backups /home/odoo/free_themes /mnt/extra-addons
+VOLUME ["/home/odoo/backups", "/home/odoo/free_themes"]
 
-# Switch to odoo
+# Switch to odoo user
 USER odoo 
