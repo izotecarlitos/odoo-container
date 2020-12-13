@@ -5,7 +5,7 @@ USER root
 
 # Create backup folder and instal pip libraries
 RUN mkdir -p /odoo/backups && \
-    chown -R odoo:odoo /odoo && \
+    chown -R odoo /odoo && \
     pip3 install paramiko
 
 # Add the backup folder as a volume
