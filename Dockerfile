@@ -9,10 +9,10 @@ RUN apt-get update \
     && pip3 install paramiko \
     && rm -rf /var/lib/apt/lists/*
 
-# Set permissions and Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-RUN mkdir -p /odoo/backups /mnt/free_themes \
-    && chown -R odoo /odoo/backups /mnt/free_themes
-VOLUME ["/odoo/backups", "/home/odoo/free_themes"]
+# Set permissions for /odoo/backups to allow restoring 
+RUN mkdir -p /odoo/backups \
+    && chown -R odoo /odoo/backups 
+VOLUME ["/odoo/backups"]
 
 # Switch back to odoo user
 USER odoo 
