@@ -5,8 +5,8 @@ USER root
 
 # Instal pip libraries and other tools
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends nano \
-    && pip3 install paramiko \
+    && apt-get install -y --no-install-recommends nano zip unzip wget \
+    && pip3 install paramiko cryptography \
     && rm -rf /var/lib/apt/lists/*
 
 # Set permissions for /odoo/backups to allow restoring 
