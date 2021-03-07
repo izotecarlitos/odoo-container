@@ -1,4 +1,4 @@
-FROM odoo:14.0
+FROM odoo:12.0
 
 # Switch to root user
 USER root 
