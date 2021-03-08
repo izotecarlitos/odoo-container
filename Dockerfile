@@ -34,12 +34,14 @@ RUN groupmod -g 1000 odoo
 
 # Set permissions for /odoo/backups to allow restoring 
 RUN mkdir -p /odoo/backups \
-    && chown -R odoo:root /odoo/backups \
+    && chown -R odoo:odoo /odoo/backups \
     && mkdir -p /mnt/free-themes \
-    && chown -R odoo:root /mnt/free-themes \
-    && chown -R odoo:root /etc/odoo \
-    && chown -R odoo:root /mnt/extra-addons \ 
-    && chown -R odoo:root /var/lib/odoo  
+    && chown -R odoo:odoo /mnt/free-themes \
+    && chown -R odoo:odoo /etc/odoo \
+    && chmod -R 0640 /etc/odoo \
+    && chown -R odoo:odoo /mnt/extra-addons \ 
+    && chown -R odoo:odoo /var/lib/odoo /var/log/odoo \
+    && chmod -R 0750 /var/log/odoo 
 VOLUME ["/odoo/backups", "/mnt/free-themes"]
 
 # Switch back to odoo user
