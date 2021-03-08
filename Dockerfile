@@ -29,13 +29,17 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Cambiar el UID y GID al usuario odoo
-#RUN usermod -u 1000 odoo
-#RUN groupmod -g 1000 odoo
+RUN usermod -u 1000 odoo
+RUN groupmod -g 1000 odoo
 
 # Set permissions for /odoo/backups to allow restoring 
 RUN mkdir -p /odoo/backups \
-    && chown -R odoo /odoo/backups 
-VOLUME ["/odoo/backups"]
+    && chown -R odoo:root /odoo/backups \
+    && mkdir -p /mnt/free-themes \
+    && chown -R odoo:root /mnt/free-themes \
+    && chown -R odoo:root /etc/odoo \
+    && chown -R odoo:root /mnt/extra-addons
+VOLUME ["/odoo/backups", "/mnt/free-themes"]
 
 # Switch back to odoo user
 USER odoo 
