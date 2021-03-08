@@ -6,9 +6,10 @@ USER root
 # Instal pip libraries and other tools
 RUN apt-get update \
     && apt-get install -y --no-install-recommends nano zip unzip wget \
-    && pip3 install --upgrade pip \
-    && pip3 install paramiko cryptography \
-    #&& pip3 install boto3 botocore pretty_bad_protocol erppeek odooly \
+    && python3 -m pip install --upgrade --force-reinstall pip -t /usr/lib/python3/dist-packages \
+    && python3 -m pip install --upgrade \
+                      paramiko cryptography boto3 botocore pretty_bad_protocol erppeek odooly \
+                      -t /usr/lib/python3/dist-packages \
     && rm -rf /var/lib/apt/lists/*
 
 # Cambiar el UID y GID al usuario odoo
