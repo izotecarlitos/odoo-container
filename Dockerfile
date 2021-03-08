@@ -29,8 +29,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Cambiar el UID y GID al usuario odoo
-RUN usermod -u 1000 odoo
-RUN groupmod -g 1000 odoo
+#RUN usermod -u 1000 odoo
+#RUN groupmod -g 1000 odoo
 
 # Set permissions for /odoo/backups to allow restoring 
 RUN mkdir -p /odoo/backups \
