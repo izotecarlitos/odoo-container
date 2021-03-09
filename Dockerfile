@@ -42,7 +42,8 @@ RUN mkdir -p /odoo/backups \
     && chown -R odoo:odoo /mnt/extra-addons \ 
     && chown -R odoo:odoo /var/log/odoo \
     && chmod -R 0750 /var/log/odoo \
-    && chown odoo:odoo /var/lib/odoo 
+    && chown odoo:odoo /var/lib/odoo \
+    && chmod -R 0660 /var/lib/odoo 
 VOLUME ["/odoo/backups", "/mnt/free-themes"]
 
 # Switch back to odoo user
